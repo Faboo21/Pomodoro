@@ -11,19 +11,17 @@
 
 <body>
     <h1>Pomodoro</h1>
-    
+
     <div id="etat" >Travail</div>
     <div id="timer" class="container">00:00</div>
     <i id="start" class="fa-solid fa-play" style="color: #ffffff;"></i>
     <br>
 
     <label for="idTravail">Temps de travail : </label>
-    <input type="text" name="nom" id="idTravail">
+    <input type="time" name="travail" id="idTravail" step="1" value="00:25:00" required >
     <br><br>
     <label for="idPause">Temps de Pause : </label>
-    <input type="text" name="nom" id="idPause">
-    <br><br>
-    <i id="start" class="fa-solid fa-play" style="color: #ffffff;"></i>
+    <input type="time" name="pause" id="idPause" step="1" value="00:05:00" required>
 
     <script src="./script/script.js"></script>
 </body>

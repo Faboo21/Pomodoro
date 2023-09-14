@@ -43,3 +43,12 @@ bouton.addEventListener('click', () => {
     }, 1000)
   }
 })
+
+function Envoi() {
+// Récupérer la valeur des champs nom et email
+var formTravail = document.getElementById('idTravail').value;
+var formPause = document.getElementById('idEmail').value;
+
+document.getElementById('idNom').style.backgroundColor="#9C6";
+document.getElementById('idEmail').style.backgroundColor="#9C6";
+}

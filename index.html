@@ -12,7 +12,9 @@
 <body>
     <h1>Pomodoro</h1>
 
-    <div id="etat" >Travail</div>
+    <div id="box">
+    <div id="travail" class="etat" >Travail</div><div id="pause" class="etat">Pause</div>
+</div>
     <div id="timer" class="container">00:00</div>
     <i id="start" class="fa-solid fa-play" style="color: #ffffff;"></i>
     <br>
@@ -24,5 +26,7 @@
     <input type="time" name="pause" id="idPause" step="1" value="00:05:00" required>
 
     <script src="./script/script.js"></script>
+    
 </body>
+
 </html>

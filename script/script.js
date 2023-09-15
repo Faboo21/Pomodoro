@@ -16,6 +16,9 @@ bouton.addEventListener('click', () => {
   else {
     isStarted = true;
     travail = true
+    let tra = document.getElementById('travail')
+    tra.style.color = "rgb(9, 140, 255)"
+    tra.style.backgroundColor = "#FFFFFF"
     bouton.className = "fa-solid fa-arrows-rotate"
     tempsTravail = parseInt(document.getElementById('idTravail').value.split(':')[0]) * 3600 + parseInt(document.getElementById('idTravail').value.split(':')[1])*60 + parseInt(document.getElementById('idTravail').value.split(':')[2])
     tempsRepos = parseInt(document.getElementById('idPause').value.split(':')[0]) * 3600 + parseInt(document.getElementById('idPause').value.split(':')[1])*60 + parseInt(document.getElementById('idPause').value.split(':')[2])
@@ -26,15 +29,23 @@ bouton.addEventListener('click', () => {
         travail = false
         if (Number.isInteger(tempsTravail)){temps = tempsRepos}
         else {temps = 300}
-        let etat = document.getElementById('etat')
-        etat.innerText = 'Pause'
+        let pau = document.getElementById('pause')
+        pau.style.color = "rgb(9, 140, 255)"
+        pau.style.backgroundColor = "#FFFFFF"
+        let tra = document.getElementById('travail')
+        tra.style.color = "#FFFFFF"
+        tra.style.backgroundColor = "rgb(9, 140, 255)"
       }
       if (temps <= 0 && !travail){
         travail = true
         if (Number.isInteger(tempsTravail)){temps = tempsTravail}
         else {temps = 15000}
-        let etat = document.getElementById('etat')
-        etat.innerText = 'Travail'
+        let tra = document.getElementById('travail')
+        tra.style.color = "rgb(9, 140, 255)"
+        tra.style.backgroundColor = "#FFFFFF"
+        let pau = document.getElementById('pause')
+        pau.style.color = "#FFFFFF"
+        pau.style.backgroundColor = "rgb(9, 140, 255)"
       }
 
       let heure = parseInt(temps / 3600, 10)

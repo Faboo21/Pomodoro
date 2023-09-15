@@ -13,17 +13,26 @@ h1{
     margin: 10px;
 }
 
+
 #start{
     font-size: 6vh;
     margin: 20px;
 }
-#etat{
+.etat{
     margin: 20px;
     font-size: x-large;
     border: 4px solid rgb(255, 255, 255);
     border-radius: 25px;
     width: 200px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 5px;
+}
+
+#box{
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
     margin-left: auto;
     margin-right: auto;
 }

@@ -6,6 +6,9 @@ body {
     color: white;
     background-color: rgb(0, 20, 65);
     font-size: large;
+    display: flex;
+    flex-direction: column;
+    min-height: 98vh;
 }
 
 h1 {
@@ -71,4 +74,13 @@ input {
     width: 160px;
     height: 160px;
     border: 10px solid #ffffff;
+}
+
+#contenu {
+    flex: 1;
+}
+
+footer {
+    color: #fff;
+    padding: 5px; 
 }

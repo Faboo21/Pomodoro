@@ -61,19 +61,19 @@ bouton.addEventListener('click', () => {
     for (var i = 0; i < objet.length; i++) { objet[i].style.display = "none" }
 
     // on initialize notre timer au temps de travail si il est possible sinon on le met a 25 min
-    if (Number.isInteger(tempsTravail)) { temps = tempsTravail }
+    if (Number.isInteger(tempsTravail)) { temps = tempsTravail - 1 }
     else temps = 1500
 
     setInterval(() => {
       if (temps <= 0 && travail) { // fin de periode de travail
         travail = false // passe au repos
         if (Number.isInteger(tempsTravail)) { temps = tempsRepos } // met le timer au temps de repos si possible sinon a 5 min
-        else { temps = 300 } 
+        else { temps = 300 }
       }
       if (temps <= 0 && !travail) { // fin de periode de repos
         travail = true // passe au travail
         if (Number.isInteger(tempsTravail)) { temps = tempsTravail } // met le timer au temps de travail si possible sinon a 25 min
-        else { temps = 15000 } 
+        else { temps = 15000 }
       }
 
       // calculs Heures Minutes Secondes
@@ -119,7 +119,7 @@ poubelle.addEventListener('click', () => {
 })
 
 inputTravail.addEventListener("input", () => { // modifie le timer en direct de l'input travail
-  if (inputTravail.value == "") timerElement.innerText = "Invalid" // temps invalid (case de selection vide)
+  if (inputTravail.value == "" || typeof inputTravail.value.split(':')[2] == 'undefined') timerElement.innerText = "Invalid" // temps invalid (case de selection vide)
   else if (inputTravail.value.split(':')[0] == "00") timerElement.innerText = inputTravail.value.split(':')[1] + ":" + inputTravail.value.split(':')[2] // minutes seulement
   else timerElement.innerText = inputTravail.value // avec heures
 })

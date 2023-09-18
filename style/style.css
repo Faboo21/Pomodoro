@@ -8,22 +8,22 @@ body {
     font-size: large;
 }
 
-h1{
+h1 {
     font-size: 50px;
     margin: 10px;
 }
 
-
-#start{
+#start {
     font-size: 6vh;
     margin: 20px;
     cursor: pointer;
 }
 
-#poubelle{
+#poubelle {
     cursor: pointer;
 }
-.etat{
+
+.etat {
     margin: 20px;
     font-size: x-large;
     border: 4px solid rgb(255, 255, 255);
@@ -34,23 +34,24 @@ h1{
     padding: 5px;
 }
 
-#box{
+#box {
     display: flex;
     justify-content: space-between;
     width: 500px;
     margin-left: auto;
     margin-right: auto;
 }
-#timer{
+
+#timer {
     font-size: 30px;
 }
 
-label{
+label {
     font-size: 20px;
-    color:#ffffff;
+    color: #ffffff;
 }
 
-input{
+input {
     border: 30px;
     border-color: #ffffff;
     border-radius: 25px;
@@ -61,16 +62,13 @@ input{
     font-size: 16px;
 }
 
-
-.container{
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: auto;
-    border-radius:50%;
-    width:160px;
-    height:160px;
-    border:10px solid #ffffff; 
-
+    border-radius: 50%;
+    width: 160px;
+    height: 160px;
+    border: 10px solid #ffffff;
 }
-

@@ -17,6 +17,11 @@ h1{
 #start{
     font-size: 6vh;
     margin: 20px;
+    cursor: pointer;
+}
+
+#poubelle{
+    cursor: pointer;
 }
 .etat{
     margin: 20px;
@@ -68,3 +73,4 @@ input{
     border:10px solid #ffffff; 
 
 }
+

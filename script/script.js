@@ -1,11 +1,29 @@
 let tempsTravail = 0
 let tempsRepos = 0
+const timerElement = document.getElementById("timer")
 
 if (localStorage.getItem("inputTravail") != null) {
   document.getElementById('idTravail').value = localStorage.getItem("inputTravail")
+
+  let input = document.getElementById("idTravail")
+  if (input.value == ""){
+    timerElement.innerText = "Invalid"
+  }
+  else if (input.value.split(':')[0] == "00"){
+    timerElement.innerText = input.value.split(':')[1]+":"+input.value.split(':')[2]
+  }
+  else {
+    timerElement.innerText = input.value
+  }
+}
+else{
+  document.getElementById('idTravail').value = "00:25:00"
 }
 if (localStorage.getItem("inputPause") != null) {
   document.getElementById('idPause').value = localStorage.getItem("inputPause")
+}
+else{
+  document.getElementById('idPause').value = "00:05:00"
 }
 
 let temps = 1500
@@ -13,7 +31,7 @@ let travail = false
 let bouton = document.getElementById("start")
 let isStarted = false
 
-const timerElement = document.getElementById("timer")
+
 const button = document.getElementById("start")
 
 bouton.addEventListener('click', () => {
@@ -34,6 +52,11 @@ bouton.addEventListener('click', () => {
     localStorage.setItem("inputTravail", document.getElementById('idTravail').value);
     localStorage.setItem("inputPause", document.getElementById('idPause').value);
 
+    let objet = document.getElementsByClassName("formulaire")
+    for(var i= 0; i < objet.length; i++)
+    {
+      objet[i].style.display = "none"
+    }
     if (Number.isInteger(tempsTravail)) { temps = tempsTravail }
 
     setInterval(() => {
@@ -85,3 +108,21 @@ bouton.addEventListener('click', () => {
 })
 
 
+let poubelle = document.getElementById("poubelle")
+poubelle.addEventListener('click', () => {
+  localStorage.clear()
+  location.reload()
+})
+
+let input = document.getElementById("idTravail")
+input.addEventListener("input", ()=>{
+  if (input.value == ""){
+    timerElement.innerText = "Invalid"
+  }
+  else if (input.value.split(':')[0] == "00"){
+    timerElement.innerText = input.value.split(':')[1]+":"+input.value.split(':')[2]
+  }
+  else {
+    timerElement.innerText = input.value
+  }
+})

@@ -1,40 +1,33 @@
 let tempsTravail = 0
 let tempsRepos = 0
-const timerElement = document.getElementById("timer")
 let temps = 1500
 let travail = false
-let bouton = document.getElementById("start")
 let isStarted = false
+
+const bouton = document.getElementById("start")
+const timerElement = document.getElementById("timer")
 const button = document.getElementById("start")
-let valise = document.getElementById("valise")
-let tasse = document.getElementById('tasse')
-let poubelle = document.getElementById("poubelle")
-let LabelPause = document.getElementById('pause')
-let objet = document.getElementsByClassName("formulaire")
-let labelTravail = document.getElementById('travail')
+const valise = document.getElementById("valise")
+const tasse = document.getElementById('tasse')
+const poubelle = document.getElementById("poubelle")
+const etatPause = document.getElementById('pause')
+const objet = document.getElementsByClassName("formulaire")
+const etatTravail = document.getElementById('travail')
+const inputTravail = document.getElementById("idTravail")
+const inputPause = document.getElementById('idPause')
 
-if (localStorage.getItem("inputTravail") != null) {
-  document.getElementById('idTravail').value = localStorage.getItem("inputTravail")
+if (localStorage.getItem("inputTravail") != null && localStorage.getItem("inputTravail") != null) {
+  inputTravail.value = localStorage.getItem("inputTravail")
+  inputPause.value = localStorage.getItem("inputPause")
 
-  let input = document.getElementById("idTravail")
-  if (input.value == ""){
-    timerElement.innerText = "Invalid"
-  }
-  else if (input.value.split(':')[0] == "00"){
-    timerElement.innerText = input.value.split(':')[1]+":"+input.value.split(':')[2]
-  }
-  else {
-    timerElement.innerText = input.value
-  }
+  if (inputTravail.value == "") timerElement.innerText = "Invalid"
+  else if (inputTravail.value.split(':')[0] == "00") timerElement.innerText = inputTravail.value.split(':')[1]+":"+inputTravail.value.split(':')[2]
+  else timerElement.innerText = inputTravail.value
 }
 else{
-  document.getElementById('idTravail').value = "00:25:00"
-}
-if (localStorage.getItem("inputPause") != null) {
-  document.getElementById('idPause').value = localStorage.getItem("inputPause")
-}
-else{
-  document.getElementById('idPause').value = "00:05:00"
+  timerElement.innerText = "25:00"
+  inputTravail.value = "00:25:00"
+  inputPause.value = "00:05:00"
 }
 
 bouton.addEventListener('click', () => {
@@ -44,44 +37,30 @@ bouton.addEventListener('click', () => {
   else {
     isStarted = true;
     travail = true
-    labelTravail.style.color = "rgb(0, 20, 65)"
-    labelTravail.style.backgroundColor = "#FFFFFF"
+    
+    etatTravail.style.color = "rgb(0, 20, 65)"
+    etatTravail.style.backgroundColor = "#FFFFFF"
     valise.style.color = "rgb(0, 20, 65)"
     bouton.className = "fa-solid fa-arrows-rotate"
-    tempsTravail = parseInt(document.getElementById('idTravail').value.split(':')[0]) * 3600 + parseInt(document.getElementById('idTravail').value.split(':')[1]) * 60 + parseInt(document.getElementById('idTravail').value.split(':')[2])
-    tempsRepos = parseInt(document.getElementById('idPause').value.split(':')[0]) * 3600 + parseInt(document.getElementById('idPause').value.split(':')[1]) * 60 + parseInt(document.getElementById('idPause').value.split(':')[2])
-    localStorage.setItem("inputTravail", document.getElementById('idTravail').value);
-    localStorage.setItem("inputPause", document.getElementById('idPause').value);
-
     
-    for(var i= 0; i < objet.length; i++)
-    {
-      objet[i].style.display = "none"
-    }
-    if (Number.isInteger(tempsTravail)) { temps = tempsTravail }
+    tempsTravail = parseInt(inputTravail.value.split(':')[0]) * 3600 + parseInt(inputTravail.value.split(':')[1]) * 60 + parseInt(inputTravail.value.split(':')[2])
+    tempsRepos = parseInt(inputPause.value.split(':')[0]) * 3600 + parseInt(inputPause.value.split(':')[1]) * 60 + parseInt(inputPause.value.split(':')[2])
+    
+    localStorage.setItem("inputTravail", inputTravail.value);
+    localStorage.setItem("inputPause", inputPause.value);
+    
+    for(var i= 0; i < objet.length; i++){objet[i].style.display = "none"}
+    
+    temps = tempsTravail - 1
 
     setInterval(() => {
       if (temps <= 0 && travail) {
         travail = false
-        if (Number.isInteger(tempsTravail)) { temps = tempsRepos }
-        else { temps = 300 }
-        LabelPause.style.color = "rgb(0, 20, 65)"
-        LabelPause.style.backgroundColor = "#FFFFFF"
-        labelTravail.style.color = "#FFFFFF"
-        labelTravail.style.backgroundColor = "rgb(0, 20, 65)"
-        valise.style.color = "#FFFFFF"
-        tasse.style.color = "rgb(0, 20, 65)"
+        temps = tempsRepos
       }
       if (temps <= 0 && !travail) {
         travail = true
-        if (Number.isInteger(tempsTravail)) { temps = tempsTravail }
-        else { temps = 15000 }
-        labelTravail.style.color = "rgb(0, 20, 65)"
-        labelTravail.style.backgroundColor = "#FFFFFF"
-        valise.style.color = "rgb(0, 20, 65)"
-        LabelPause.style.color = "#FFFFFF"
-        LabelPause.style.backgroundColor = "rgb(0, 20, 65)"
-        tasse.style.color = "#FFFFFF"
+        temps = tempsTravail
       }
 
       let heure = parseInt(temps / 3600, 10)
@@ -96,25 +75,34 @@ bouton.addEventListener('click', () => {
         timerElement.innerText = `${heure}:${minutes}:${secondes}`
       else
         timerElement.innerText = `${minutes}:${secondes}`
+
+      if (travail){
+        etatTravail.style.color = "rgb(0, 20, 65)"
+        etatTravail.style.backgroundColor = "#FFFFFF"
+        valise.style.color = "rgb(0, 20, 65)"
+        etatPause.style.color = "#FFFFFF"
+        etatPause.style.backgroundColor = "rgb(0, 20, 65)"
+        tasse.style.color = "#FFFFFF"
+      }
+      else if (!travail){
+        etatPause.style.color = "rgb(0, 20, 65)"
+        etatPause.style.backgroundColor = "#FFFFFF"
+        etatTravail.style.color = "#FFFFFF"
+        etatTravail.style.backgroundColor = "rgb(0, 20, 65)"
+        valise.style.color = "#FFFFFF"
+        tasse.style.color = "rgb(0, 20, 65)"
+      }
     }, 1000)
   }
 })
-
 
 poubelle.addEventListener('click', () => {
   localStorage.clear()
   location.reload()
 })
 
-let input = document.getElementById("idTravail")
-input.addEventListener("input", ()=>{
-  if (input.value == ""){
-    timerElement.innerText = "Invalid"
-  }
-  else if (input.value.split(':')[0] == "00"){
-    timerElement.innerText = input.value.split(':')[1]+":"+input.value.split(':')[2]
-  }
-  else {
-    timerElement.innerText = input.value
-  }
+inputTravail.addEventListener("input", ()=>{
+  if (inputTravail.value == "") timerElement.innerText = "Invalid"
+  else if (inputTravail.value.split(':')[0] == "00") timerElement.innerText = inputTravail.value.split(':')[1]+":"+inputTravail.value.split(':')[2]
+  else timerElement.innerText = inputTravail.value
 })

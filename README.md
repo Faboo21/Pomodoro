@@ -8,6 +8,7 @@ Le Timer Pomodoro est un outil de gestion du temps basé sur la technique Pomodo
 - Pause courte de 5 minutes après chaque session.
 - Possibilité de modifier les temps de travail et de pause
 - Possibilité de réinitialiser le timer.
+- Les temps sont sauvegardés en memoire pour la prochaine utilisation
 
 ## Technologies utilisées
 

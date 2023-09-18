@@ -17,8 +17,10 @@ bouton.addEventListener('click', () => {
     isStarted = true;
     travail = true
     let tra = document.getElementById('travail')
-    tra.style.color = "rgb(9, 140, 255)"
+    tra.style.color = "rgb(0, 20, 65)"
     tra.style.backgroundColor = "#FFFFFF"
+    let valise = document.getElementById("valise")
+    valise.style.color = "rgb(0, 20, 65)"
     bouton.className = "fa-solid fa-arrows-rotate"
     tempsTravail = parseInt(document.getElementById('idTravail').value.split(':')[0]) * 3600 + parseInt(document.getElementById('idTravail').value.split(':')[1])*60 + parseInt(document.getElementById('idTravail').value.split(':')[2])
     tempsRepos = parseInt(document.getElementById('idPause').value.split(':')[0]) * 3600 + parseInt(document.getElementById('idPause').value.split(':')[1])*60 + parseInt(document.getElementById('idPause').value.split(':')[2])
@@ -30,22 +32,30 @@ bouton.addEventListener('click', () => {
         if (Number.isInteger(tempsTravail)){temps = tempsRepos}
         else {temps = 300}
         let pau = document.getElementById('pause')
-        pau.style.color = "rgb(9, 140, 255)"
+        pau.style.color = "rgb(0, 20, 65)"
         pau.style.backgroundColor = "#FFFFFF"
         let tra = document.getElementById('travail')
         tra.style.color = "#FFFFFF"
-        tra.style.backgroundColor = "rgb(9, 140, 255)"
+        tra.style.backgroundColor = "rgb(0, 20, 65)"
+        let valise = document.getElementById("valise")
+        valise.style.color = "#FFFFFF"
+        let tasse = document.getElementById('tasse')
+        tasse.style.color = "rgb(0, 20, 65)"
       }
       if (temps <= 0 && !travail){
         travail = true
         if (Number.isInteger(tempsTravail)){temps = tempsTravail}
         else {temps = 15000}
         let tra = document.getElementById('travail')
-        tra.style.color = "rgb(9, 140, 255)"
+        tra.style.color = "rgb(0, 20, 65)"
         tra.style.backgroundColor = "#FFFFFF"
+        let valise = document.getElementById("valise")
+        valise.style.color = "rgb(0, 20, 65)"
         let pau = document.getElementById('pause')
         pau.style.color = "#FFFFFF"
-        pau.style.backgroundColor = "rgb(9, 140, 255)"
+        pau.style.backgroundColor = "rgb(0, 20, 65)"
+        let tasse = document.getElementById('tasse')
+        tasse.style.color = "#FFFFFF"
       }
 
       let heure = parseInt(temps / 3600, 10)
@@ -69,7 +79,7 @@ bouton.addEventListener('click', () => {
         let etat = document.getElementById('etat')
         etat.style.borderColor = "green"
       }
-    }, 10)
+    }, 1000)
   }
 })
 

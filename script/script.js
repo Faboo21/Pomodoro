@@ -151,7 +151,7 @@ bouton.addEventListener('click', () => {
         valise.style.color = "#FFFFFF"
         tasse.style.color = "rgb(0, 20, 65)"
       }
-    }, 10)
+    }, 1000)
   }
 })
 

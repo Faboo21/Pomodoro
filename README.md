@@ -13,6 +13,7 @@
 - 🌀 Affichage des cycles.
 - ☕ Choix du temps de la longue pause qui a lieu tous les 4 cycles.
 - 🎵 L'utilisateur peut activer une notification sonore à la fin de chaque periode.
+- ⚙️ Possibilité de remettre les paramètres par défaut
 
 ## 🛠 Technologies utilisées
 

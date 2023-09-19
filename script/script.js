@@ -47,7 +47,7 @@ bouton.addEventListener('click', () => {
     travail = true // periode de travail
 
     // changement de design de bouton
-    bouton.className = "fa-solid fa-arrows-rotate"
+    bouton.className = "rotate-center  fa-solid fa-arrows-rotate"
 
     // recuperation des inputs 
     tempsTravail = parseInt(inputTravail.value.split(':')[0]) * 3600 + parseInt(inputTravail.value.split(':')[1]) * 60 + parseInt(inputTravail.value.split(':')[2])
@@ -63,6 +63,21 @@ bouton.addEventListener('click', () => {
     // on initialize notre timer au temps de travail si il est possible sinon on le met a 25 min
     if (Number.isInteger(tempsTravail)) { temps = tempsTravail - 1 }
     else temps = 1500
+
+    // possibilité de changer la periode
+    etatTravail.addEventListener('click', () => {
+      travail = true // passe au travail
+      if (Number.isInteger(tempsTravail)) { temps = tempsTravail } // met le timer au temps de travail si possible sinon a 25 min
+      else { temps = 15000 }
+    })
+    etatPause.addEventListener('click', () => {
+      travail = false // passe au repos
+      if (Number.isInteger(tempsTravail)) { temps = tempsRepos } // met le timer au temps de repos si possible sinon a 5 min
+      else { temps = 300 }
+    })
+
+    etatTravail.style.cursor = "pointer"
+    etatPause.style.cursor = "pointer"
 
     setInterval(() => {
       if (temps <= 0 && travail) { // fin de periode de travail

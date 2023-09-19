@@ -1,26 +1,29 @@
-# Timer Pomodoro
+# 🍅 Timer Pomodoro
 
-Le Timer Pomodoro est un outil de gestion du temps basé sur la technique Pomodoro. Cette technique consiste à travailler intensément pendant une période définie (généralement 25 minutes) suivie d'une courte pause. L'objectif est d'améliorer la productivité et la concentration.
+**Le Timer Pomodoro** est un outil de gestion du temps basé sur la 📅 technique Pomodoro. Concentrez-vous sur votre travail pendant une période définie et récompensez-vous par une pause bien méritée!
 
-## Fonctionnalités
+## 🚀 Fonctionnalités
 
-- Lancement d'une session Pomodoro de 25 minutes.
-- Pause courte de 5 minutes après chaque session.
-- Possibilité de modifier les temps de travail et de pause
-- Possibilité de réinitialiser le timer.
-- Les temps sont sauvegardés en memoire pour la prochaine utilisation
-- Possiblité de changer de periode en cliquant dessus
-- Affichage des cycles
-- Choix du temps de la longue pause qui a lieu tout les 4 cycles
+- ✅ Lancement d'une session Pomodoro de 25 minutes.
+- 🛌 Pause courte de 5 minutes après chaque session.
+- ⏱ Possibilité de modifier les temps de travail et de pause.
+- 🔁 Possibilité de réinitialiser le timer.
+- 💾 Les temps sont sauvegardés en mémoire pour la prochaine utilisation.
+- 🔄 Possibilité de changer de période en cliquant dessus.
+- 🌀 Affichage des cycles.
+- ☕ Choix du temps de la longue pause qui a lieu tous les 4 cycles.
 
-## Technologies utilisées
+## 🛠 Technologies utilisées
 
-- HTML5
-- CSS3
-- JavaScript
+- 🌐 **HTML5**
+- 🎨 **CSS3**
+- 💻 **JavaScript**
 
-## Appli
+## 🔗 Appli
 
-- https://faboo21.github.io/Pomodoro/
+Vous êtes prêt à booster votre productivité? Jetez un œil à l'application ici:
+[Timer Pomodoro par Fabien Leroy](https://faboo21.github.io/Pomodoro/)
 
-Fabien Leroy ©2023
+---
+
+Fabien Leroy 🖋️

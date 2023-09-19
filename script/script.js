@@ -136,20 +136,20 @@ bouton.addEventListener('click', () => {
       cycles.innerText = "Cycle : " + cycle // affichage du cycle
 
       if (travail) { // affichage en temps de travail
-        etatTravail.style.color = "rgb(0, 20, 65)"
+        etatTravail.style.color = "rgb(218, 0, 0)"
         etatTravail.style.backgroundColor = "#FFFFFF"
-        valise.style.color = "rgb(0, 20, 65)"
+        valise.style.color = "rgb(218, 0, 0)"
         etatPause.style.color = "#FFFFFF"
-        etatPause.style.backgroundColor = "rgb(0, 20, 65)"
+        etatPause.style.backgroundColor = "rgb(218, 0, 0)"
         tasse.style.color = "#FFFFFF"
       }
       else if (!travail) { // affichage en temps de repos
-        etatPause.style.color = "rgb(0, 20, 65)"
+        etatPause.style.color = "rgb(218, 0, 0)"
         etatPause.style.backgroundColor = "#FFFFFF"
         etatTravail.style.color = "#FFFFFF"
-        etatTravail.style.backgroundColor = "rgb(0, 20, 65)"
+        etatTravail.style.backgroundColor = "rgb(218, 0, 0)"
         valise.style.color = "#FFFFFF"
-        tasse.style.color = "rgb(0, 20, 65)"
+        tasse.style.color = "rgb(218, 0, 0)"
       }
     }, 1000)
   }

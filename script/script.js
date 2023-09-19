@@ -1,9 +1,11 @@
 // Definition des Variables
 let tempsTravail = 0
 let tempsRepos = 0
+let tempsLongue = 0 
 let temps = 0
 let travail = false
 let isStarted = false
+let cycle = 1
 
 // Recuperation des objets de la page
 const bouton = document.getElementById("start")
@@ -16,12 +18,15 @@ const etatTravail = document.getElementById('travail')
 const objet = document.getElementsByClassName("formulaire")
 const inputTravail = document.getElementById("idTravail")
 const inputPause = document.getElementById('idPause')
+const inputLongue = document.getElementById('idLongue')
+const cycles = document.getElementById('cycle')
 
 // Test du localhost et mise en place du timer en conéquences
-if (localStorage.getItem("inputTravail") != null && localStorage.getItem("inputTravail") != null) {
+if (localStorage.getItem("inputTravail") != null && localStorage.getItem("inputTravail") != null && localStorage.getItem("inputLongue") != null) {
   // localhost existe donc recuperation des valeurs
   inputTravail.value = localStorage.getItem("inputTravail")
   inputPause.value = localStorage.getItem("inputPause")
+  inputLongue.value = localStorage.getItem("inputLongue")
 
   // affichage du timer
   if (inputTravail.value == "") timerElement.innerText = "Invalid" // temps invalid (case de selection vide)
@@ -33,6 +38,7 @@ else {
   timerElement.innerText = "25:00"
   inputTravail.value = "00:25:00"
   inputPause.value = "00:05:00"
+  inputLongue.value = "00:20:00"
 }
 
 // Action au clic du bouton
@@ -52,10 +58,12 @@ bouton.addEventListener('click', () => {
     // recuperation des inputs 
     tempsTravail = parseInt(inputTravail.value.split(':')[0]) * 3600 + parseInt(inputTravail.value.split(':')[1]) * 60 + parseInt(inputTravail.value.split(':')[2])
     tempsRepos = parseInt(inputPause.value.split(':')[0]) * 3600 + parseInt(inputPause.value.split(':')[1]) * 60 + parseInt(inputPause.value.split(':')[2])
+    tempsLongue = parseInt(inputLongue.value.split(':')[0]) * 3600 + parseInt(inputLongue.value.split(':')[1]) * 60 + parseInt(inputLongue.value.split(':')[2])
 
     // ajout des temps au localhost
     localStorage.setItem("inputTravail", inputTravail.value);
     localStorage.setItem("inputPause", inputPause.value);
+    localStorage.setItem("inputLongue", inputLongue.value)
 
     // on cache les elements pour changer le temps
     for (var i = 0; i < objet.length; i++) { objet[i].style.display = "none" }
@@ -66,14 +74,25 @@ bouton.addEventListener('click', () => {
 
     // possibilité de changer la periode
     etatTravail.addEventListener('click', () => {
-      travail = true // passe au travail
-      if (Number.isInteger(tempsTravail)) { temps = tempsTravail } // met le timer au temps de travail si possible sinon a 25 min
-      else { temps = 15000 }
+      if (!travail) {
+        travail = true // passe au travail
+        if (Number.isInteger(tempsTravail)) { temps = tempsTravail } // met le timer au temps de travail si possible sinon a 25 min
+        else { temps = 15000 }
+        cycle++
+      }
     })
     etatPause.addEventListener('click', () => {
-      travail = false // passe au repos
-      if (Number.isInteger(tempsTravail)) { temps = tempsRepos } // met le timer au temps de repos si possible sinon a 5 min
-      else { temps = 300 }
+      if (travail) {
+        travail = false // passe au repos
+        if (cycle % 4 == 0) { // test si c'est la longue pause
+          if (Number.isInteger(tempsLongue)) { temps = tempsLongue } // met le timer au temps de repos si possible sinon a 20 min
+          else { temps = 1200 }
+        }
+        else {
+          if (Number.isInteger(tempsRepos)) { temps = tempsRepos } // met le timer au temps de repos si possible sinon a 5 min
+          else { temps = 300 }
+        }
+      }
     })
 
     etatTravail.style.cursor = "pointer"
@@ -82,13 +101,20 @@ bouton.addEventListener('click', () => {
     setInterval(() => {
       if (temps <= 0 && travail) { // fin de periode de travail
         travail = false // passe au repos
-        if (Number.isInteger(tempsTravail)) { temps = tempsRepos } // met le timer au temps de repos si possible sinon a 5 min
-        else { temps = 300 }
+        if (cycle % 4 == 0) { // test si c'est la longue pause
+          if (Number.isInteger(tempsLongue)) { temps = tempsLongue } // met le timer au temps de repos si possible sinon a 20 min
+          else { temps = 1200 }
+        }
+        else {
+          if (Number.isInteger(tempsRepos)) { temps = tempsRepos } // met le timer au temps de repos si possible sinon a 5 min
+          else { temps = 300 }
+        }
       }
       if (temps <= 0 && !travail) { // fin de periode de repos
         travail = true // passe au travail
         if (Number.isInteger(tempsTravail)) { temps = tempsTravail } // met le timer au temps de travail si possible sinon a 25 min
-        else { temps = 15000 }
+        else { temps = 1500 }
+        cycle++
       }
 
       // calculs Heures Minutes Secondes
@@ -107,6 +133,8 @@ bouton.addEventListener('click', () => {
 
       temps = temps <= 0 ? 0 : temps - 1 // incremente d'une seconde le timer
 
+      cycles.innerText = "Cycle : " + cycle // affichage du cycle
+
       if (travail) { // affichage en temps de travail
         etatTravail.style.color = "rgb(0, 20, 65)"
         etatTravail.style.backgroundColor = "#FFFFFF"
@@ -123,7 +151,7 @@ bouton.addEventListener('click', () => {
         valise.style.color = "#FFFFFF"
         tasse.style.color = "rgb(0, 20, 65)"
       }
-    }, 1000)
+    }, 10)
   }
 })
 

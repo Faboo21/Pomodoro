@@ -6,6 +6,7 @@ let temps = 0
 let travail = false
 let isStarted = false
 let cycle = 1
+let boolAudio = false
 
 // Recuperation des objets de la page
 const bouton = document.getElementById("start")
@@ -20,6 +21,8 @@ const inputTravail = document.getElementById("idTravail")
 const inputPause = document.getElementById('idPause')
 const inputLongue = document.getElementById('idLongue')
 const cycles = document.getElementById('cycle')
+const audio = new Audio('./audio/notif.mp3')
+const inputAudio = document.getElementById("idAudio")
 
 // Test du localhost et mise en place du timer en conéquences
 if (localStorage.getItem("inputTravail") != null && localStorage.getItem("inputTravail") != null && localStorage.getItem("inputLongue") != null) {
@@ -72,6 +75,9 @@ bouton.addEventListener('click', () => {
     if (Number.isInteger(tempsTravail)) { temps = tempsTravail - 1 }
     else temps = 1500
 
+    // prend en compte si l'utilisateur veux l'audio
+    boolAudio = inputAudio.checked
+
     // possibilité de changer la periode
     etatTravail.addEventListener('click', () => {
       if (!travail) {
@@ -109,12 +115,19 @@ bouton.addEventListener('click', () => {
           if (Number.isInteger(tempsRepos)) { temps = tempsRepos } // met le timer au temps de repos si possible sinon a 5 min
           else { temps = 300 }
         }
+        if (boolAudio){
+          audio.play()
+        }
+        
       }
       if (temps <= 0 && !travail) { // fin de periode de repos
         travail = true // passe au travail
         if (Number.isInteger(tempsTravail)) { temps = tempsTravail } // met le timer au temps de travail si possible sinon a 25 min
         else { temps = 1500 }
         cycle++
+        if (boolAudio){
+          audio.play()
+        }
       }
 
       // calculs Heures Minutes Secondes
